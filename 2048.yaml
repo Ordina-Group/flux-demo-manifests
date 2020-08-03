@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "2048-deployment"
+  namespace: "coresvc"
+spec:
+  selector:
+    matchLabels:
+      app: "2048"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "2048"
+    spec:
+      containers:
+      - image: alexwhen/docker-2048:latest
+        name: "2048"
+        resources:
+          limits:
+            cpu: "1"
+            memory: 500Mi
+          requests:
+            cpu: 10m
+            memory: 100Mi
+        ports:
+        - containerPort: 80
