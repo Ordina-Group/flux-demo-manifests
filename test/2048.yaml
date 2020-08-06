@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: "2048-deployment"
   namespace: "default"
-  annotations: "fluxcd.io/automated"
 spec:
   selector:
     matchLabels:
