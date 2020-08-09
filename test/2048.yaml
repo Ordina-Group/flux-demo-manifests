@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: "2048-deployment"
-  namespace: "default"
+  namespace: "flux-demo"
   annotations:
     flux.weave.works/automated: "true"
 spec:
