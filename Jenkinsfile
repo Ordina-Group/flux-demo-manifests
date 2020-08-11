@@ -4,15 +4,16 @@ pipeline {
     stage('download helm') {
         steps {
             sh """
-            curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
-            chmod 700 get_helm.sh
-            ./get_helm.sh
+            curl -fsSL -o helm.tar.gz https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz
+            tar xf ./helm.tar.gz
+            mv ./linux-amd64/helm ./helm
+            chmod 700 ./helm
             """
         }
       }
       stage('template with helm') {
         steps {
-            sh 'helm --version'
+            sh './helm template charts/game'
         }
       }
    }
