@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "game-deployment"
+  namespace: "flux-demo"
+spec:
+  selector:
+    matchLabels:
+      app: "game"
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: "game"
+    spec:
+      containers:
+      - image: {{ .Values.image}}
+        name: "2048"
+        resources:
+          limits:
+            cpu: "1"
+            memory: 500Mi
+          requests:
+            cpu: 10m
+            memory: 100Mi
+        ports:
+        - containerPort: 80
