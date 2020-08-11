@@ -21,11 +21,13 @@ pipeline {
       }
       stage('add to git') {
         steps {
-            sh """
-            git add ./test/deployment.yaml 
-            git commit -m '[${JOB_NAME}:${BUILD_NUMBER}] manifests updated.\n${BUILD_URL}'
-            git push
-            """
+          sshagent(["basGithubSshKey"]) {
+              sh """
+              git add ./test/deployment.yaml 
+              git commit -m '[${JOB_NAME}:${BUILD_NUMBER}] manifests updated.\n${BUILD_URL}'
+              git push
+              """
+          }
         }
       }
    }
