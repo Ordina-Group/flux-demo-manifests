@@ -16,7 +16,16 @@ pipeline {
       }
       stage('template with helm') {
         steps {
-            sh "./helm template charts/game --set image=${params.image}"
+            sh "./helm template charts/game --set image=${params.image} > ./test/deployment.yaml"
+        }
+      }
+      stage('add to git') {
+        steps {
+            sh """
+            git add ./test/deployment.yaml 
+            git commit -m '[${JOB_NAME}:${BUILD_NUMBER}] manifests updated.\n${BUILD_URL}'
+            git push
+            """
         }
       }
    }
