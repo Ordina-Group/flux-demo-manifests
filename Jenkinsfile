@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    parameters {
+        choice(name: 'image', choices: 'edserbin/flappy_bird\nalexwhen/docker-2048:latest')
+    }
     stages {
     stage('download helm') {
         steps {
@@ -13,7 +16,7 @@ pipeline {
       }
       stage('template with helm') {
         steps {
-            sh './helm template charts/game'
+            sh './helm template charts/game --set image=${params.image}'
         }
       }
    }
