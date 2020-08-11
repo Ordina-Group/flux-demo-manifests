@@ -16,7 +16,7 @@ pipeline {
       }
       stage('template with helm') {
         steps {
-            sh './helm template charts/game --set image=${params.image}'
+            sh "./helm template charts/game --set image=${params.image}"
         }
       }
    }
