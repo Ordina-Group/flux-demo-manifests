@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - image: alexwhen/docker-2048:latest
-        name: "2048"
+        name: "game"
         resources:
           limits:
             cpu: "1"
