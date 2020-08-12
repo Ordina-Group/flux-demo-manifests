@@ -4,8 +4,16 @@ pipeline {
         choice(name: 'image', choices: 'edserbin/flappy_bird\nalexwhen/docker-2048:latest')
     }
     stages {
+    stage("init"){
+        steps{
+            deleteDir()
+            checkout scm
+        }
+    }
     stage('download helm') {
         steps {
+            deleteDir()
+            checkout scm
             sh """
             curl -fsSL -o helm.tar.gz https://get.helm.sh/helm-v3.2.4-linux-amd64.tar.gz
             tar xf ./helm.tar.gz
