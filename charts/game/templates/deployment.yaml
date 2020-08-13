@@ -3,6 +3,8 @@ kind: Deployment
 metadata:
   name: "game-deployment"
   namespace: "flux-demo"
+  annotations:
+    flux.weave.works/automated: "true"
 spec:
   selector:
     matchLabels:
