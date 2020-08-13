@@ -18,7 +18,7 @@ spec:
         app: "game"
     spec:
       containers:
-      - image: alexwhen/docker-2048:latest
+      - image: edserbin/flappy_bird
         name: "2048"
         resources:
           limits:
